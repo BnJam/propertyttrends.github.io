@@ -6,226 +6,90 @@ const DEFAULT_ZOOM = 11;
 
 // Property data structure with sales history
 // In a real application, this would be fetched from an API
-const propertyData = [
-    // Victoria Downtown
-    {
-        address: "123 Government St, Victoria, BC",
-        lat: 48.4284,
-        lng: -123.3656,
-        currentPrice: 849000,
-        bedrooms: 2,
-        bathrooms: 2,
-        sqft: 1200,
-        salesHistory: [
-            { date: "2023-06-15", price: 849000, type: "Listed" },
-            { date: "2021-03-20", price: 725000, type: "Sold" },
-            { date: "2018-08-10", price: 625000, type: "Sold" }
-        ]
-    },
-    {
-        address: "456 Douglas St, Victoria, BC",
-        lat: 48.4254,
-        lng: -123.3656,
-        currentPrice: 1150000,
-        bedrooms: 3,
-        bathrooms: 2.5,
-        sqft: 1800,
-        salesHistory: [
-            { date: "2023-07-01", price: 1150000, type: "Listed" },
-            { date: "2020-11-15", price: 950000, type: "Sold" },
-            { date: "2017-05-22", price: 780000, type: "Sold" }
-        ]
-    },
-    // Oak Bay
-    {
-        address: "789 Beach Dr, Oak Bay, BC",
-        lat: 48.4193,
-        lng: -123.3156,
-        currentPrice: 2100000,
-        bedrooms: 4,
-        bathrooms: 3,
-        sqft: 2800,
-        salesHistory: [
-            { date: "2023-08-20", price: 2100000, type: "Listed" },
-            { date: "2019-09-10", price: 1650000, type: "Sold" },
-            { date: "2015-04-18", price: 1200000, type: "Sold" }
-        ]
-    },
-    {
-        address: "321 Newport Ave, Oak Bay, BC",
-        lat: 48.4263,
-        lng: -123.3056,
-        currentPrice: 1650000,
-        bedrooms: 3,
-        bathrooms: 2,
-        sqft: 2200,
-        salesHistory: [
-            { date: "2023-09-05", price: 1650000, type: "Listed" },
-            { date: "2022-02-14", price: 1550000, type: "Sold" },
-            { date: "2019-06-30", price: 1300000, type: "Sold" }
-        ]
-    },
-    // Saanich
-    {
-        address: "567 Carey Rd, Saanich, BC",
-        lat: 48.4584,
-        lng: -123.3756,
-        currentPrice: 925000,
-        bedrooms: 4,
-        bathrooms: 3,
-        sqft: 2400,
-        salesHistory: [
-            { date: "2023-07-12", price: 925000, type: "Listed" },
-            { date: "2021-08-25", price: 810000, type: "Sold" },
-            { date: "2018-11-05", price: 650000, type: "Sold" }
-        ]
-    },
-    {
-        address: "234 Quadra St, Saanich, BC",
-        lat: 48.4684,
-        lng: -123.3656,
-        currentPrice: 780000,
-        bedrooms: 3,
-        bathrooms: 2,
-        sqft: 1600,
-        salesHistory: [
-            { date: "2023-06-30", price: 780000, type: "Listed" },
-            { date: "2020-12-10", price: 680000, type: "Sold" },
-            { date: "2016-07-15", price: 520000, type: "Sold" }
-        ]
-    },
-    // Esquimalt
-    {
-        address: "890 Esquimalt Rd, Esquimalt, BC",
-        lat: 48.4334,
-        lng: -123.4156,
-        currentPrice: 695000,
-        bedrooms: 2,
-        bathrooms: 1,
-        sqft: 1100,
-        salesHistory: [
-            { date: "2023-08-15", price: 695000, type: "Listed" },
-            { date: "2021-05-20", price: 610000, type: "Sold" },
-            { date: "2019-01-10", price: 495000, type: "Sold" }
-        ]
-    },
-    {
-        address: "445 Lampson St, Esquimalt, BC",
-        lat: 48.4284,
-        lng: -123.4256,
-        currentPrice: 815000,
-        bedrooms: 3,
-        bathrooms: 2,
-        sqft: 1450,
-        salesHistory: [
-            { date: "2023-09-01", price: 815000, type: "Listed" },
-            { date: "2022-03-15", price: 765000, type: "Sold" },
-            { date: "2020-06-22", price: 625000, type: "Sold" }
-        ]
-    },
-    // James Bay
-    {
-        address: "678 Simcoe St, Victoria, BC",
-        lat: 48.4184,
-        lng: -123.3756,
-        currentPrice: 975000,
-        bedrooms: 2,
-        bathrooms: 2,
-        sqft: 1350,
-        salesHistory: [
-            { date: "2023-07-20", price: 975000, type: "Listed" },
-            { date: "2021-10-05", price: 850000, type: "Sold" },
-            { date: "2018-04-12", price: 695000, type: "Sold" }
-        ]
-    },
-    {
-        address: "223 Dallas Rd, Victoria, BC",
-        lat: 48.4134,
-        lng: -123.3706,
-        currentPrice: 1450000,
-        bedrooms: 3,
-        bathrooms: 2.5,
-        sqft: 2000,
-        salesHistory: [
-            { date: "2023-08-10", price: 1450000, type: "Listed" },
-            { date: "2020-09-18", price: 1200000, type: "Sold" },
-            { date: "2017-02-28", price: 950000, type: "Sold" }
-        ]
-    },
-    // Additional properties for better heat map distribution
-    {
-        address: "112 Burnside Rd W, Victoria, BC",
-        lat: 48.4484,
-        lng: -123.3856,
-        currentPrice: 725000,
-        bedrooms: 3,
-        bathrooms: 2,
-        sqft: 1500,
-        salesHistory: [
-            { date: "2023-09-12", price: 725000, type: "Listed" },
-            { date: "2022-01-20", price: 685000, type: "Sold" }
-        ]
-    },
-    {
-        address: "334 Gorge Rd E, Victoria, BC",
-        lat: 48.4384,
-        lng: -123.3556,
-        currentPrice: 650000,
-        bedrooms: 2,
-        bathrooms: 1.5,
-        sqft: 1150,
-        salesHistory: [
-            { date: "2023-07-25", price: 650000, type: "Listed" },
-            { date: "2021-04-10", price: 575000, type: "Sold" }
-        ]
-    },
-    {
-        address: "556 Hillside Ave, Victoria, BC",
-        lat: 48.4384,
-        lng: -123.3356,
-        currentPrice: 895000,
-        bedrooms: 4,
-        bathrooms: 3,
-        sqft: 2100,
-        salesHistory: [
-            { date: "2023-08-30", price: 895000, type: "Listed" },
-            { date: "2020-07-15", price: 745000, type: "Sold" }
-        ]
-    },
-    {
-        address: "789 Pandora Ave, Victoria, BC",
-        lat: 48.4304,
-        lng: -123.3606,
-        currentPrice: 1050000,
-        bedrooms: 3,
-        bathrooms: 2,
-        sqft: 1700,
-        salesHistory: [
-            { date: "2023-09-15", price: 1050000, type: "Listed" },
-            { date: "2021-11-20", price: 925000, type: "Sold" }
-        ]
-    },
-    {
-        address: "445 Bay St, Victoria, BC",
-        lat: 48.4224,
-        lng: -123.3706,
-        currentPrice: 1250000,
-        bedrooms: 2,
-        bathrooms: 2,
-        sqft: 1400,
-        salesHistory: [
-            { date: "2023-06-20", price: 1250000, type: "Listed" },
-            { date: "2022-05-10", price: 1150000, type: "Sold" }
-        ]
+// IMPORTANT: Replace YOUR_APIFY_API_KEY with your actual Apify API key
+const API_KEY = 'YOUR_APIFY_API_KEY';
+const APIFY_API_URL = `https://api.apify.com/v2/acts/scrapemind~realtor-ca-scraper/run-sync-get-dataset-items?token=${API_KEY}`;
+
+async function fetchRealEstateData() {
+    // URL for the Victoria, BC area on Realtor.ca
+    const startUrl = "https://www.realtor.ca/map#ZoomLevel=11&Center=48.4284,-123.3656";
+
+    const input = {
+        "startUrls": [startUrl],
+        "getDetails": true,
+        "maxListings": 50 // Limit for testing purposes
+    };
+
+    try {
+        const response = await fetch(APIFY_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(input),
+        });
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching real estate data:', error);
+        return [];
     }
-];
+}
+
+function transformApiData(apiData) {
+    return apiData.map(property => {
+        const salesHistory = [];
+
+        // Add historical sales data
+        if (property.History && Array.isArray(property.History)) {
+            property.History.forEach(sale => {
+                salesHistory.push({
+                    date: sale.LastUpdated,
+                    price: parseFloat(sale.Price),
+                    type: 'Sold'
+                });
+            });
+        }
+
+        // Add the current listing to the sales history
+        if (property.LastUpdated && property.Property.PriceUnformattedValue) {
+            salesHistory.unshift({ // Add to the beginning of the array
+                date: property.LastUpdated.split(' ')[0], // YYYY-MM-DD
+                price: parseFloat(property.Property.PriceUnformattedValue),
+                type: 'Listed'
+            });
+        }
+
+        let sqft = 0;
+        if (property.Building.SizeInterior) {
+            const areaInM2 = parseFloat(property.Building.SizeInterior.replace(' m2', ''));
+            if (!isNaN(areaInM2)) {
+                sqft = Math.round(areaInM2 * 10.764);
+            }
+        }
+
+        return {
+            address: property.Property.Address.AddressText.replace('|', ', '),
+            lat: parseFloat(property.Property.Address.Latitude),
+            lng: parseFloat(property.Property.Address.Longitude),
+            currentPrice: parseFloat(property.Property.PriceUnformattedValue),
+            bedrooms: parseInt(property.Building.Bedrooms, 10) || 0,
+            bathrooms: parseInt(property.Building.BathroomTotal, 10) || 0,
+            sqft: sqft,
+            salesHistory: salesHistory,
+        };
+    });
+}
+
+// In a real application, this would be fetched from an API
 
 // Initialize the map
 let map;
 let heatmapLayer;
 let markersLayer;
+let propertyData = [];
 
-function initMap() {
+async function initMap() {
     // Create the map centered on Lower Vancouver Island
     map = L.map('map').setView(VANCOUVER_ISLAND_CENTER, DEFAULT_ZOOM);
     
@@ -243,13 +107,16 @@ function initMap() {
     addLegend();
     
     // Load property data
-    loadPropertyData();
+    await loadPropertyData();
     
     // Update statistics
     updateStatistics();
 }
 
-function loadPropertyData() {
+async function loadPropertyData() {
+    const rawData = await fetchRealEstateData();
+    propertyData = transformApiData(rawData);
+
     // Prepare heat map data
     const heatmapData = [];
     
